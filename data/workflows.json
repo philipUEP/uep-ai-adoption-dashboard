@@ -1,0 +1,28 @@
+{
+ "live": [
+  {
+   "name": "AI report reconciliation",
+   "dept": "IT",
+   "tool": "Test tool",
+   "hours_saved": 6,
+   "live_since": "2026-09-02",
+   "test": true
+  },
+  {
+   "name": "Campaign brief drafting",
+   "dept": "Marketing",
+   "tool": "Test tool",
+   "hours_saved": 3,
+   "live_since": "2026-09-02",
+   "test": true
+  },
+  {
+   "name": "Support ticket triage copilot",
+   "dept": "CX",
+   "tool": "Test tool",
+   "hours_saved": 4,
+   "live_since": "2026-09-02",
+   "test": true
+  }
+ ]
+}

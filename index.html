@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UEP AI Adoption Dashboard</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --ink:#1a2233; --muted:#5b6472;
+    --line:#e5e8ee; --accent:#2563eb; --shadow:0 1px 2px rgba(16,24,40,.04),0 4px 14px rgba(16,24,40,.05);
+    --blue:#2563eb; --green:#16a34a; --yellow:#d97706; --red:#dc2626; --gray:#9aa3b2;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+  header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+  .kicker{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  h1{font-size:26px;font-weight:700;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13.5px;margin-top:4px}
+  .updated{font-size:12.5px;color:var(--muted);text-align:right;line-height:1.5}
+  .demo-ribbon{display:none;background:#fff7e6;border:1px solid #f5d9a8;color:#8a5a00;border-radius:10px;padding:9px 14px;font-size:13px;margin-bottom:18px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
+  .card .label{font-size:12.5px;font-weight:600;letter-spacing:.02em;color:var(--muted);text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .grade-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .card .value{font-size:40px;font-weight:750;letter-spacing:-.02em;margin:10px 0 2px}
+  .card .target{font-size:12.5px;color:var(--muted)}
+  .pill{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:999px;margin-top:10px}
+  .section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-bottom:16px}
+  .section h2{font-size:15px;font-weight:650;margin-bottom:16px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .bar-row{display:grid;grid-template-columns:110px 1fr 46px;align-items:center;gap:10px;margin-bottom:9px;font-size:13px}
+  .bar-track{background:#eef0f4;border-radius:999px;height:14px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:999px;min-width:2px}
+  .bar-val{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted);font-size:12.5px}
+  .hist-row{display:grid;grid-template-columns:90px 1fr 110px;align-items:center;gap:12px;margin-bottom:14px;font-size:13px}
+  .hist-track{background:#eef0f4;border-radius:999px;height:10px;overflow:hidden}
+  .hist-fill{height:100%;border-radius:999px}
+  .hist-meta{display:flex;gap:12px;color:var(--muted);font-size:12px;white-space:nowrap}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}
+  td{padding:9px 8px;border-bottom:1px solid #f0f2f6}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:1px 8px;border-radius:999px;background:#eef2ff;color:#3730a3}
+  .empty{color:var(--muted);font-size:13px;padding:14px 0}
+  footer{margin-top:26px;color:var(--gray);font-size:12px;text-align:center}
+  .b{background:var(--blue)} .g{background:var(--green)} .y{background:var(--yellow)} .r{background:var(--red)} .n{background:var(--gray)}
+  .t-blue{color:var(--blue)} .t-green{color:var(--green)} .t-yellow{color:var(--yellow)} .t-red{color:var(--red)} .t-gray{color:var(--gray)}
+  .p-blue{background:#eef4ff;color:#1e40af} .p-green{background:#e9f9ef;color:#15803d}
+  .p-yellow{background:#fef6e7;color:#b45309} .p-red{background:#fdeeee;color:#b91c1c} .p-gray{background:#eef0f3;color:#4b5563}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="kicker">UEP LLC · Information Technology</div>
+      <h1>AI Adoption Dashboard</h1>
+      <div class="sub">Scorecard Objective 4 · Drive Company-Wide AI Adoption · Q3 2026</div>
+    </div>
+    <div class="updated" id="updated"></div>
+  </header>
+  <div class="demo-ribbon" id="demoRibbon">Demo data: no real department submissions yet. This banner disappears automatically once real data arrives.</div>
+  <div class="cards">
+    <div class="card">
+      <div class="label">Employees trained <span class="grade-dot" id="d1dot"></span></div>
+      <div class="value" id="m1val">—</div>
+      <div class="target">Target: Good 40 · Better 60 · Best 80</div>
+      <div class="pill" id="m1pill"></div>
+    </div>
+    <div class="card">
+      <div class="label">Live AI workflows <span class="grade-dot" id="d2dot"></span></div>
+      <div class="value" id="m2val">—</div>
+      <div class="target">Target: Good 3 · Better 6 · Best 10</div>
+      <div class="pill" id="m2pill"></div>
+    </div>
+    <div class="card">
+      <div class="label">Departments w/ use case <span class="grade-dot" id="d3dot"></span></div>
+      <div class="value" id="m3val">—</div>
+      <div class="target">Target: Good 2 · Better 4 · Best 6</div>
+      <div class="pill" id="m3pill"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Month history</h2>
+    <div id="history"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="section">
+      <h2>Live workflows by department</h2>
+      <div id="deptLive"></div>
+    </div>
+    <div class="section">
+      <h2>% trained by department · <span id="deptMonth"></span></h2>
+      <div id="deptPct"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Currently live workflows</h2>
+    <table>
+      <thead><tr><th>Workflow</th><th>Department</th><th>Tool</th><th>Hours saved / wk</th><th>Live since</th></tr></thead>
+      <tbody id="liveRows"></tbody>
+    </table>
+    <div class="empty" id="liveEmpty" style="display:none">No live workflows yet.</div>
+  </div>
+
+  <footer>Auto-refreshed from the AI Adoption Tracking base · Status colors: Best blue · Better green · Good yellow · Below Good red</footer>
+</div>
+
+<script>
+const gradeCls = { "Best":["b","p-blue","t-blue"], "Better":["g","p-green","t-green"],
+                   "Good":["y","p-yellow","t-yellow"], "Below Good":["r","p-red","t-red"],
+                   "No data":["n","p-gray","t-gray"] };
+const gradeLabel = { "Best":"Best", "Better":"Better", "Good":"Good", "Below Good":"Below Good", "No data":"No data" };
+function fmtPct(v){ return v === null || v === undefined ? "—" : v + "%"; }
+function pctWidth(v, max){ return v === null || v === undefined ? 2 : Math.max(3, v / (max || 1) * 100); }
+function gradeOf(pct){ return pct === null || pct === undefined ? "No data" : (pct >= 80 ? "Best" : pct >= 60 ? "Better" : pct >= 40 ? "Good" : "Below Good"); }
+
+async function load(){
+  const [m, dep, wf] = await Promise.all([
+    fetch("data/metrics.json").then(r => r.json()),
+    fetch("data/departments.json").then(r => r.json()),
+    fetch("data/workflows.json").then(r => r.json()),
+  ]);
+  const cur = m.history[m.history.length - 1];
+  const monthLabel = new Date(cur.month + "-01T00:00:00").toLocaleString("en-US", { month: "long", year: "numeric" });
+
+  document.getElementById("updated").innerHTML = "Updated<br>" + (m.updated_at || "");
+  if (m.demo) document.getElementById("demoRibbon").style.display = "block";
+
+  const cards = [
+    ["m1", fmtPct(cur.pct_trained), cur.pct_grade, "d1"],
+    ["m2", cur.live_workflows, cur.workflows_grade, "d2"],
+    ["m3", cur.depts, cur.depts_grade, "d3"],
+  ];
+  for (const [id, val, grade, dot] of cards) {
+    const c = gradeCls[grade] || gradeCls["No data"];
+    document.getElementById(id + "val").textContent = val;
+    const pill = document.getElementById(id + "pill");
+    pill.textContent = gradeLabel[grade];
+    pill.className = "pill " + c[1];
+    document.getElementById(dot + "dot").className = "grade-dot " + c[0];
+  }
+
+  // history: three mini rows for % trained, live workflows, depts
+  const hist = document.getElementById("history");
+  const series = [
+    ["% trained", h => h.pct_trained, h => gradeOf(h.pct_trained), fmtPct, 100],
+    ["Live workflows", h => h.live_workflows, h => h.workflows_grade, v => v, 10],
+    ["Departments", h => h.depts, h => h.depts_grade, v => v, 6],
+  ];
+  series.forEach(([name, get, gr, fmt, max]) => {
+    const row = document.createElement("div");
+    row.className = "hist-row";
+    let cells = "";
+    for (const h of m.history) {
+      const v = get(h); const g = gr(h); const c = gradeCls[g] || gradeCls["No data"];
+      cells += `<div style="display:flex;flex-direction:column;gap:4px;flex:1">
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted)">
+          <span>${h.label}</span><span>${h.submissions === 0 && name === "% trained" ? "no data" : fmt(v)}</span></div>
+        <div class="hist-track"><div class="hist-fill ${c[0]}" style="width:${pctWidth(v, max)}%"></div></div>
+      </div>`;
+    }
+    row.innerHTML = `<div style="font-weight:600">${name}</div>` + cells;
+    hist.appendChild(row);
+  });
+
+  // departments
+  const deptMonth = document.getElementById("deptMonth");
+  deptMonth.textContent = monthLabel;
+  const dl = document.getElementById("deptLive");
+  const dlEmpty = dep.dept_live.length === 0;
+  if (dlEmpty) dl.innerHTML = '<div class="empty">No live workflows by department yet.</div>';
+  else {
+    const max = Math.max(...dep.dept_live.map(d => d.count));
+    dl.innerHTML = dep.dept_live.map(d =>
+      `<div class="bar-row"><span>${d.dept}</span><div class="bar-track"><div class="bar-fill b" style="width:${Math.max(4, d.count / max * 100)}%"></div></div><div class="bar-val">${d.count}</div></div>`
+    ).join("");
+  }
+  const dp = document.getElementById("deptPct");
+  if (dep.dept_pct.length === 0) dp.innerHTML = '<div class="empty">No monthly returns yet for ' + monthLabel + '.</div>';
+  else {
+    dp.innerHTML = dep.dept_pct.map(d => {
+      const g = gradeOf(d.pct); const c = gradeCls[g];
+      return `<div class="bar-row"><span>${d.dept}</span><div class="bar-track"><div class="bar-fill ${c[0]}" style="width:${pctWidth(d.pct, 100)}%"></div></div><div class="bar-val">${fmtPct(d.pct)}</div></div>`;
+    }).join("");
+  }
+
+  // live table
+  const rows = document.getElementById("liveRows");
+  if (wf.live.length === 0) document.getElementById("liveEmpty").style.display = "block";
+  rows.innerHTML = wf.live.map(w =>
+    `<tr><td>${w.name || ""}</td><td>${w.dept ? `<span class="tag">${w.dept}</span>` : ""}</td><td>${w.tool || ""}</td><td>${w.hours_saved ?? ""}</td><td>${w.live_since || ""}</td></tr>`
+  ).join("");
+}
+load().catch(e => { document.getElementById("updated").textContent = "Failed to load data: " + e.message; });
+</script>
+</body>
+</html>

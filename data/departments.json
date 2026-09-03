@@ -1,0 +1,31 @@
+{
+ "month": "2026-09",
+ "dept_pct": [
+  {
+   "dept": "TikTok",
+   "headcount": 40,
+   "trained": 32,
+   "pct": 80.0
+  },
+  {
+   "dept": "Finance",
+   "headcount": 10,
+   "trained": 5,
+   "pct": 50.0
+  }
+ ],
+ "dept_live": [
+  {
+   "dept": "CX",
+   "count": 1
+  },
+  {
+   "dept": "IT",
+   "count": 1
+  },
+  {
+   "dept": "Marketing",
+   "count": 1
+  }
+ ]
+}

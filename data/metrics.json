@@ -1,0 +1,63 @@
+{
+ "updated_at": "2026-09-03 00:00 UTC",
+ "anchor_month": "2026-09",
+ "demo": true,
+ "targets": {
+  "pct_trained": [
+   40,
+   60,
+   80
+  ],
+  "live_workflows": [
+   3,
+   6,
+   10
+  ],
+  "depts_with_use_case": [
+   2,
+   4,
+   6
+  ]
+ },
+ "history": [
+  {
+   "month": "2026-07",
+   "label": "Jul",
+   "submissions": 0,
+   "headcount": 0,
+   "trained": 0,
+   "pct_trained": null,
+   "pct_grade": "No data",
+   "live_workflows": 3,
+   "workflows_grade": "Good",
+   "depts": 3,
+   "depts_grade": "Good"
+  },
+  {
+   "month": "2026-08",
+   "label": "Aug",
+   "submissions": 0,
+   "headcount": 0,
+   "trained": 0,
+   "pct_trained": null,
+   "pct_grade": "No data",
+   "live_workflows": 3,
+   "workflows_grade": "Good",
+   "depts": 3,
+   "depts_grade": "Good"
+  },
+  {
+   "month": "2026-09",
+   "label": "Sep",
+   "submissions": 2,
+   "headcount": 50,
+   "trained": 37,
+   "pct_trained": 74.0,
+   "pct_grade": "Better",
+   "live_workflows": 3,
+   "workflows_grade": "Good",
+   "depts": 3,
+   "depts_grade": "Good"
+  }
+ ]
+}
