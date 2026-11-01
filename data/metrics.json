@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-10-31 10:47 UTC",
- "anchor_month": "2026-10",
+ "updated_at": "2026-11-01 07:35 UTC",
+ "anchor_month": "2026-11",
  "demo": true,
  "targets": {
   "pct_trained": [
@@ -21,19 +21,6 @@
  },
  "history": [
   {
-   "month": "2026-08",
-   "label": "Aug",
-   "submissions": 0,
-   "headcount": 0,
-   "trained": 0,
-   "pct_trained": null,
-   "pct_grade": "No data",
-   "live_workflows": 3,
-   "workflows_grade": "Good",
-   "depts": 3,
-   "depts_grade": "Good"
-  },
-  {
    "month": "2026-09",
    "label": "Sep",
    "submissions": 2,
@@ -49,6 +36,19 @@
   {
    "month": "2026-10",
    "label": "10",
+   "submissions": 0,
+   "headcount": 0,
+   "trained": 0,
+   "pct_trained": null,
+   "pct_grade": "No data",
+   "live_workflows": 3,
+   "workflows_grade": "Good",
+   "depts": 3,
+   "depts_grade": "Good"
+  },
+  {
+   "month": "2026-11",
+   "label": "11",
    "submissions": 0,
    "headcount": 0,
    "trained": 0,
