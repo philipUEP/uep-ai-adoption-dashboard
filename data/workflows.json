@@ -17,12 +17,36 @@
    "test": true
   },
   {
+   "name": "Chad the Media Buyer",
+   "dept": "DTC",
+   "tool": "Mausbot",
+   "hours_saved": 20,
+   "live_since": "2026-11-06",
+   "test": false
+  },
+  {
+   "name": "Hermes Daily Content Update ",
+   "dept": "Marketing",
+   "tool": "Hermes Agent",
+   "hours_saved": 3,
+   "live_since": "2026-11-01",
+   "test": false
+  },
+  {
    "name": "Support ticket triage copilot",
    "dept": "CX",
    "tool": "Test tool",
    "hours_saved": 4,
    "live_since": "2026-09-02",
    "test": true
+  },
+  {
+   "name": "Tracking updates",
+   "dept": "Marketing",
+   "tool": "Slackbot",
+   "hours_saved": 8,
+   "live_since": null,
+   "test": false
   }
  ]
 }

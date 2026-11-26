@@ -7,12 +7,16 @@
    "count": 1
   },
   {
+   "dept": "DTC",
+   "count": 1
+  },
+  {
    "dept": "IT",
    "count": 1
   },
   {
    "dept": "Marketing",
-   "count": 1
+   "count": 3
   }
  ]
 }

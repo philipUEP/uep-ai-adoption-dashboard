@@ -1,7 +1,7 @@
 {
- "updated_at": "2026-11-25 07:35 UTC",
+ "updated_at": "2026-11-26 07:35 UTC",
  "anchor_month": "2026-11",
- "demo": true,
+ "demo": false,
  "targets": {
   "pct_trained": [
    40,
@@ -28,10 +28,10 @@
    "trained": 37,
    "pct_trained": 74.0,
    "pct_grade": "Better",
-   "live_workflows": 3,
-   "workflows_grade": "Good",
-   "depts": 3,
-   "depts_grade": "Good"
+   "live_workflows": 6,
+   "workflows_grade": "Better",
+   "depts": 4,
+   "depts_grade": "Better"
   },
   {
    "month": "2026-10",
@@ -41,10 +41,10 @@
    "trained": 0,
    "pct_trained": null,
    "pct_grade": "No data",
-   "live_workflows": 3,
-   "workflows_grade": "Good",
-   "depts": 3,
-   "depts_grade": "Good"
+   "live_workflows": 6,
+   "workflows_grade": "Better",
+   "depts": 4,
+   "depts_grade": "Better"
   },
   {
    "month": "2026-11",
@@ -54,10 +54,10 @@
    "trained": 0,
    "pct_trained": null,
    "pct_grade": "No data",
-   "live_workflows": 3,
-   "workflows_grade": "Good",
-   "depts": 3,
-   "depts_grade": "Good"
+   "live_workflows": 6,
+   "workflows_grade": "Better",
+   "depts": 4,
+   "depts_grade": "Better"
   }
  ]
 }
